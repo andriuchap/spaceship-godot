@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Sprites/SpaceBG.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Spaceship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/SpaceRock.tscn" type="PackedScene" id=3]
 
 [node name="MainScene" type="Node2D"]
 
@@ -13,5 +14,29 @@ texture = ExtResource( 1 )
 [node name="Spaceship" parent="." instance=ExtResource( 2 )]
 position = Vector2( 325.987, 240.385 )
 scale = Vector2( 1.03764, 1.03764 )
-turn_rate_acceleration = 2
-max_turn_rate = 3
+turn_rate_acceleration = 8
+max_turn_rate = 1
+
+[node name="SpaceRock" parent="." instance=ExtResource( 3 )]
+position = Vector2( 74.8226, 384.845 )
+
+[node name="SpaceRock2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 545.063, 78.6101 )
+
+[node name="SpaceRock3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 552.013, 400.134 )
+
+[node name="SpaceRock4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 74.8228, 74.4405 )
+
+[node name="SpaceRock5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 177.673, 229.18 )
+
+[node name="SpaceRock6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 330.56, 111.504 )
+
+[node name="SpaceRock7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 467.23, 238.446 )
+
+[node name="SpaceRock8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 325.463, 365.387 )

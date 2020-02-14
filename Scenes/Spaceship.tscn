@@ -1,20 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/SpaceshipController.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Spaceship.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Wrapper.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Missle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Spaceship.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Wrapper.gd" type="Script" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 29, 0, -12, 16, -27, 0, -12, -16 )
 
 [node name="Spaceship" type="KinematicBody2D"]
 script = ExtResource( 1 )
+missle_object = ExtResource( 2 )
 
 [node name="Spaceship" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Wrapper" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="ShotCooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ShotLocation" type="Node2D" parent="."]
+position = Vector2( 38, 0 )
+[connection signal="timeout" from="ShotCooldown" to="." method="_on_ShotCooldown_timeout"]
