@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Missle.png-24b1dca64f6f97c034e6fb48f8fad632.stex"
+path="res://.import/Missile.png-6893e1a7f6d5da427afd1a3359a31505.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Missle.png"
-dest_files=[ "res://.import/Missle.png-24b1dca64f6f97c034e6fb48f8fad632.stex" ]
+source_file="res://Sprites/Missile.png"
+dest_files=[ "res://.import/Missile.png-6893e1a7f6d5da427afd1a3359a31505.stex" ]
 
 [params]
 

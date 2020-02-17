@@ -1,12 +1,35 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/SpaceshipController.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Missle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Missile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/Spaceship.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Wrapper.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/MissileFlash.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 29, 0, -12, 16, -27, 0, -12, -16 )
+
+[sub_resource type="Curve" id=2]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 94.64 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 3.27976, 0, 0, Vector2( 0.833511, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -9.27577, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_curve = SubResource( 3 )
+scale_curve = SubResource( 5 )
 
 [node name="Spaceship" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -27,4 +50,13 @@ one_shot = true
 
 [node name="ShotLocation" type="Node2D" parent="."]
 position = Vector2( 38, 0 )
+
+[node name="MuzzleFlash" type="Particles2D" parent="."]
+position = Vector2( 28.576, 0 )
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+process_material = SubResource( 6 )
+texture = ExtResource( 5 )
 [connection signal="timeout" from="ShotCooldown" to="." method="_on_ShotCooldown_timeout"]

@@ -49,6 +49,7 @@ func _physics_process(delta):
 		missile_inst.position = $ShotLocation.global_position
 		get_parent().add_child(missile_inst)
 		$ShotCooldown.start();
+		$MuzzleFlash.emitting = true
 
 
 func _on_ShotCooldown_timeout():

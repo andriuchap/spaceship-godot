@@ -1,8 +1,40 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/SpaceRock.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Rock.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Wrapper.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/SelfDestroy.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/Dust.png" type="Texture" id=5]
+
+[sub_resource type="Curve" id=2]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, -360 ), 0.0, 971.234, 0, 0, Vector2( 1, 360 ), 1187.64, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+max_value = 0.25
+_data = [ Vector2( 0, 0 ), 0.0, 1.37521, 0, 0, Vector2( 0.293071, 0.25 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -1.04507, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 500.0
+angle = 360.0
+angle_random = 1.0
+angle_curve = SubResource( 3 )
+scale_random = 0.25
+scale_curve = SubResource( 5 )
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 61, 11, 52, 25, 11, 55, -21, 64, -47, 54, -59, 36, -62.75, 0, -54, -32, -37, -54, -18, -64, 10, -58, 28, -49, 40, -36.1, 60, -13, 64, 0 )
@@ -16,8 +48,20 @@ script = ExtResource( 1 )
 [node name="Rock" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="Wrapper" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="SelfDestroy" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="BreakParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 6 )
+texture = ExtResource( 5 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
