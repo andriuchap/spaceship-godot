@@ -44,6 +44,7 @@ func _physics_process(delta):
 	
 	if(Input.is_action_pressed("ui_accept")) && can_shoot:
 		can_shoot = false;
+		$ShotSound.play()
 		var missile_inst = missle_object.instance()
 		missile_inst.rotation = rotation
 		missile_inst.position = $ShotLocation.global_position

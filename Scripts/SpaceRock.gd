@@ -22,7 +22,7 @@ func _ready():
 	$Shape.rotation = rock_rotation;
 	apply_impulse(Vector2.ZERO, initial_impulse);
 
-func _process(dt):
+func _fixed_process(dt):
 	if was_emitting && !$BreakParticles.emitting:
 		$SelfDestroy.mark_destroy();
 
@@ -43,7 +43,11 @@ func _break():
 func _visual_break():
 	$Shape.disabled = true;
 	$Rock.visible = false;
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0.0
 	was_emitting = true;
+	$BreakParticles.process_material.scale = rock_scale.x * 8.0
+	$BreakParticles.process_material.initial_velocity = rock_scale.x * 250.0
 	$BreakParticles.emitting = true;
 	
 func _split_rocks():
