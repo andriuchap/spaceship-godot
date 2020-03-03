@@ -32,15 +32,3 @@ position = Vector2( 552.013, 400.134 )
 
 [node name="SpaceRock4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 74.8228, 74.4405 )
-
-[node name="SpaceRock5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 177.673, 229.18 )
-
-[node name="SpaceRock6" parent="." instance=ExtResource( 4 )]
-position = Vector2( 330.56, 111.504 )
-
-[node name="SpaceRock7" parent="." instance=ExtResource( 4 )]
-position = Vector2( 467.23, 238.446 )
-
-[node name="SpaceRock8" parent="." instance=ExtResource( 4 )]
-position = Vector2( 325.463, 365.387 )
